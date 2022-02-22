@@ -125,8 +125,8 @@ var ScrollPosStyler = (function(document, window) {
     // for (var elem of elements) {
     for (var i = 0; elements[i]; ++i) { // chrome workaround
       // add style / class to element
-      elements[i].classList.add("sps--abv");
-      elements[i].classList.remove("sps--blw");
+      //elements[i].classList.add("sps--abv");
+      //elements[i].classList.remove("sps--blw");
     }
 
     // resume accepting scroll events

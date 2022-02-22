@@ -1,6 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Backend\LoginController;
+use App\Http\Controllers\Backend\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +22,14 @@ Route::get('/about', [FrontendController::class, 'about'])->name('about');
 Route::get('/gallery', [FrontendController::class, 'gallery'])->name('gallery');
 Route::get('/booknow', [FrontendController::class, 'booknow'])->name('booknow');
 Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
+
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+    Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::get('dashboard', [LoginController::class, 'dashboard']); 
+    Route::get('login', [LoginController::class, 'index'])->name('login');
+    Route::post('custom-login', [LoginController::class, 'customLogin'])->name('login.custom'); 
+    Route::get('registration', [LoginController::class, 'registration'])->name('register-user');
+    Route::post('custom-registration', [LoginController::class, 'customRegistration'])->name('register.custom'); 
+    Route::get('signout', [LoginController::class, 'signOut'])->name('signout');
+});

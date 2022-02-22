@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>Pet Club Animals Category Bootstrap Responsive Template | Home :: W3layouts</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,7 +44,7 @@
         <div id="page">
             <div id="home" class="banner" data-blast="bgColor">
 
-                <nav class="navbar navbar-expand-lg mb-4 top-bar navbar-static-top sps sps--abv">
+                <nav class="navbar navbar-expand-lg mb-4 top-bar navbar-static-top sps sps--blw">
                     <div class="container">
                         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse1" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
@@ -53,7 +52,7 @@
                         <a class="navbar-brand mx-auto" href="{{ route('index') }}">Pet <span data-blast="color">Club</span></a>
                         <div class="collapse navbar-collapse" id="navbarCollapse1">
                             <ul class="navbar-nav ml-auto">
-                                <li class="nav-item {{ (request()->is('index*')) ? 'active' : '' }}"> <a class="nav-link" href="{{ route('index') }}" data-blast="color">Home <span class="sr-only">(current)</span></a> </li>
+                                <li class="nav-item {{ (request()->is('/')) ? 'active' : '' }}"> <a class="nav-link" href="{{ route('index') }}">Home</a> </li>
                                 <li class="nav-item {{ (request()->is('services')) ? 'active' : '' }}"> <a class="nav-link" href="{{ route('services') }}">Services</a> </li>
                                 <li class="nav-item {{ (request()->is('about')) ? 'active' : '' }}"> <a class="nav-link" href="{{ route('about') }}">About</a> </li>
                                 <li class="nav-item {{ (request()->is('gallery')) ? 'active' : '' }}"> <a class="nav-link" href="{{ route('gallery') }}">Gallery</a> </li>
@@ -73,7 +72,7 @@
     {{-- footer --}}
     @section('footer')
         @include('frontend.layouts.footer')
-    @show
+    @endsection
 
 
     <script src="{{ asset('frontend/js/jquery-2.2.3.min.js') }}"></script>
