@@ -25,9 +25,9 @@ Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('/', [AdminController::class, 'index'])->name('index');
+    Route::get('/', [LoginController::class, 'login'])->name('login');
+    Route::get('login', [LoginController::class, 'login'])->name('login');
     Route::get('dashboard', [LoginController::class, 'dashboard']); 
-    Route::get('login', [LoginController::class, 'index'])->name('login');
     Route::post('custom-login', [LoginController::class, 'customLogin'])->name('login.custom'); 
     Route::get('registration', [LoginController::class, 'registration'])->name('register-user');
     Route::post('custom-registration', [LoginController::class, 'customRegistration'])->name('register.custom'); 

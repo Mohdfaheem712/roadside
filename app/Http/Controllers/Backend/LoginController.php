@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function index()
+    public function login()
     {
         return view('backend.login');
     }  
@@ -63,10 +63,10 @@ class LoginController extends Controller
     public function dashboard()
     {
         if(Auth::check()){
-            return view('dashboard');
+            return view('backend.dashboard');
         }
   
-        return redirect("login")->withSuccess('You are not allowed to access');
+        return redirect("admin/login")->withSuccess('You are not allowed to access');
     }
     
     public function signOut() {
