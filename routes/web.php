@@ -27,9 +27,10 @@ Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', [LoginController::class, 'login'])->name('login');
     Route::get('login', [LoginController::class, 'login'])->name('login');
-    Route::get('dashboard', [LoginController::class, 'dashboard']); 
-    Route::post('custom-login', [LoginController::class, 'customLogin'])->name('login.custom'); 
-    Route::get('registration', [LoginController::class, 'registration'])->name('register-user');
-    Route::post('custom-registration', [LoginController::class, 'customRegistration'])->name('register.custom'); 
+    Route::post('adminlogin', [LoginController::class, 'customLogin'])->name('adminlogin'); 
+    Route::get('dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
+    Route::get('profile', [LoginController::class, 'profile'])->name('profile');  
     Route::get('signout', [LoginController::class, 'signOut'])->name('signout');
+    Route::post('profile', [AdminController::class, 'profile'])->name('updateProfile');
+    Route::post('updatewebsite', [AdminController::class, 'profile'])->name('updatewebsite');  
 });

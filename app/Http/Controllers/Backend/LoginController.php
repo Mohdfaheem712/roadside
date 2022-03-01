@@ -4,15 +4,16 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Hash;
-use Session;
-use App\Models\User;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
     public function login()
     {
+        if (Auth::user()) {
+            return redirect()->intended('admin/dashboard');
+        }
         return view('backend.login');
     }  
       
@@ -25,40 +26,12 @@ class LoginController extends Controller
    
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')
+            return redirect()->intended('admin/dashboard')
                         ->withSuccess('Signed in');
         }
   
         return redirect("login")->withSuccess('Login details are not valid');
-    }
-
-    public function registration()
-    {
-        return view('auth.registration');
-    }
-      
-    public function customRegistration(Request $request)
-    {  
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6',
-        ]);
-           
-        $data = $request->all();
-        $check = $this->create($data);
-         
-        return redirect("dashboard")->withSuccess('You have signed-in');
-    }
-
-    public function create(array $data)
-    {
-      return User::create([
-        'name' => $data['name'],
-        'email' => $data['email'],
-        'password' => Hash::make($data['password'])
-      ]);
-    }    
+    } 
     
     public function dashboard()
     {
@@ -68,11 +41,16 @@ class LoginController extends Controller
   
         return redirect("admin/login")->withSuccess('You are not allowed to access');
     }
+
+    public function profile(){
+        $user = Auth::user();
+        return view('backend.profile',$user);
+    }
     
     public function signOut() {
         Session::flush();
         Auth::logout();
   
-        return Redirect('login');
+        return Redirect('admin/login');
     }
 }
