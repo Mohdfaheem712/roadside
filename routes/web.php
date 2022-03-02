@@ -32,5 +32,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('profile', [LoginController::class, 'profile'])->name('profile');  
     Route::get('signout', [LoginController::class, 'signOut'])->name('signout');
     Route::post('profile', [AdminController::class, 'profile'])->name('updateProfile');
-    Route::post('updatewebsite', [AdminController::class, 'profile'])->name('updatewebsite');  
+    Route::post('updatesetting', [AdminController::class, 'updateSetting'])->name('updatesetting');  
 });

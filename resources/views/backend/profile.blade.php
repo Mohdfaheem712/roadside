@@ -102,19 +102,19 @@
                 </div>
                 <div class="card-body p-3">
                     <ul class="list-group">
-                    <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Title:</strong> &nbsp; {{ Auth::user()->name }}</li>
-                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mobile:</strong> &nbsp; (44) 123 1234 123</li>
-                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> &nbsp; {{ Auth::user()->email }}</li>
-                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Location:</strong> &nbsp; India</li>
+                    <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Title:</strong> &nbsp; {{ $setting->title }}</li>
+                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mobile:</strong> &nbsp; (+91) {{ $setting->phone }}</li>
+                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> &nbsp; {{ $setting->email }}</li>
+                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Location:</strong> &nbsp; {{ $setting->address }}</li>
                     <li class="list-group-item border-0 ps-0 pb-0">
                         <strong class="text-dark text-sm">Social:</strong> &nbsp;
-                        <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
+                        <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="{{ $setting->facebok_url }}">
                         <i class="fab fa-facebook fa-lg"></i>
                         </a>
-                        <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
+                        <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0" href="{{ $setting->twitter_url }}">
                         <i class="fab fa-twitter fa-lg"></i>
                         </a>
-                        <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
+                        <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0" href="{{ $setting->instagram_url }}">
                         <i class="fab fa-instagram fa-lg"></i>
                         </a>
                     </li>
@@ -136,26 +136,43 @@
                     </div>
                 </div>
                 <div class="card-body p-3">
-                    <form role="form" class="text-start" method="post" action="{{ route('admin.updatewebsit') }}" enctype="multipart/form-data">
+                    <form role="form" class="text-start" method="post" action="{{ route('admin.updatesetting') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="input-group input-group-outline my-3 is-filled">
                             <label class="form-label">Name</label>
-                            <input type="name" name="name" value="{{ Auth::user()->name }}" class="form-control">
+                            <input type="title" name="title" value="{{ $setting->title }}" class="form-control">
                         </div>
                         <div class="input-group input-group-outline my-3 is-filled">
                             <label class="form-label">Email</label>
-                            <input type="email" name="email" value="{{ Auth::user()->email }}" class="form-control">
+                            <input type="email" name="email" value="{{ $setting->email }}" class="form-control">
+                        </div>
+                        <div class="input-group input-group-outline my-3 is-filled">
+                            <label class="form-label">Phone</label>
+                            <input type="phone" name="phone" value="{{ $setting->phone }}" class="form-control">
+                        </div>
+                        <div class="input-group input-group-outline my-3 is-filled">
+                            <label class="form-label">Address</label>
+                            <input type="text" name="address" value="{{ $setting->address }}" class="form-control">
+                        </div>
+                        
+                        <div class="input-group input-group-outline my-3 is-filled">
+                            <label class="form-label">Facebook URL</label>
+                            <input type="text" name="facebook_url" value="{{ $setting->facebook_url }}" class="form-control">
+                        </div>
+                        <div class="input-group input-group-outline my-3 is-filled">
+                            <label class="form-label">Twitter URL</label>
+                            <input type="text" name="twitter_url" value="{{ $setting->twitter_url }}" class="form-control">
+                        </div>
+                        <div class="input-group input-group-outline my-3 is-filled">
+                            <label class="form-label">Instagaram URL</label>
+                            <input type="text" name="instagram_url" value="{{ $setting->instagram_url }}" class="form-control">
                         </div>
                         <div class="input-group input-group-outline my-3 is-filled">
                             <label class="form-label">Logo</label>
-                            <input type="file" name="file" class="form-control file">
-                        </div>
-                        <div class="input-group input-group-outline my-3 is-filled">
-                            <label class="form-label">Password</label>
-                            <input type="password" name="password" class="form-control">
+                            <input type="file" name="logo" class="form-control file">
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Update Details</button>
+                            <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Update Website Setting</button>
                         </div>
                     </form>
                 </div>

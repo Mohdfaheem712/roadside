@@ -17,8 +17,15 @@ class WebsiteSettingSeeder extends Seeder
     {
         WebsiteSetting::create([
             'title' => 'Roadside Romeos',
-            'email' => 'admin@roadsideromeos.com',
+            'email' => 'shailja@gmail.com',
             'phone' => '7785951700',
+            'logo' => '',
+            'address' => 'Lucknow',
+            'longitude' => '',
+            'latitude' => '',
+            'facebook_url' => 'https://facebook.com',
+            'twitter_url' => 'https://twitter.com',
+            'instagram_url' => 'https://instagram.com',
         ]);
     }
 }

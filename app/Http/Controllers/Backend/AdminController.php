@@ -24,15 +24,25 @@ class AdminController extends Controller
         return redirect("admin/profile")->withSuccess('Details Updated Successfully');
     }
 
-    public function updatewebsiteSetting(Request $request){
+    public function updateSetting(Request $request){
 
         $request->validate([
             'title' => 'required',
             'email' => 'required',
             'phone' => 'required',
+            'address' => 'required',
         ]);
+        if($request->hasFile($request->file)){
+            $name = $request->file('logo')->getClientOriginalName();
+ 
+            $path = $request->file('logo')->store('public/images/logo');
+            $request->logo = $path;
+            dd($request->logo);
+        }
+
         
         $data = request()->except(['_token']);
+        
         WebsiteSetting::where('id', 1)->update($data);
         return redirect("admin/profile")->withSuccess('Website Details Updated Successfully');
     }

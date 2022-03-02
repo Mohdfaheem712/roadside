@@ -22,9 +22,9 @@ class CreateWebsiteSettingsTable extends Migration
             $table->string('address')->nullable();
             $table->decimal('longitude',10, 8)->nullable();
             $table->decimal('latitude',11, 8)->nullable();
-            $table->timestamp('facebook_url')->nullable();
-            $table->timestamp('instagram_url')->nullable();
-            $table->timestamp('twitter_url')->nullable();
+            $table->string('facebook_url')->nullable();
+            $table->string('instagram_url')->nullable();
+            $table->string('twitter_url')->nullable();
             $table->timestamps();
         });
     }

@@ -6,9 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use App\Models\WebsiteSetting;
 
 class LoginController extends Controller
 {
+
+    public function __construct(WebsiteSetting $WebsiteSetting){
+        $this->WebsiteSetting = $WebsiteSetting;
+    }
+
     public function login()
     {
         if (Auth::user()) {
@@ -23,7 +29,6 @@ class LoginController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
-   
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
             return redirect()->intended('admin/dashboard')
@@ -44,7 +49,8 @@ class LoginController extends Controller
 
     public function profile(){
         $user = Auth::user();
-        return view('backend.profile',$user);
+        $setting = $this->WebsiteSetting->find(1);
+        return view('backend.profile',compact('user','setting'));
     }
     
     public function signOut() {
