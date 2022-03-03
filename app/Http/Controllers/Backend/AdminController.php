@@ -9,6 +9,7 @@ use App\Models\WebsiteSetting;
 use App\Models\UserQueries;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
@@ -61,7 +62,11 @@ class AdminController extends Controller
             }
         }
         $setting->update($data);
-        return redirect("admin/setting")->withSuccess('Website Details Updated Successfully');
+
+        Session::flash('message', 'Settings Updated Successfully!'); 
+        Session::flash('type', 'Success');
+        Session::flash('time', now());
+        return redirect("admin/setting");
     }
 
     public function queries(){
