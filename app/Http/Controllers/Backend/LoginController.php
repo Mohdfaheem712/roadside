@@ -47,11 +47,7 @@ class LoginController extends Controller
         return redirect("admin/login")->withSuccess('You are not allowed to access');
     }
 
-    public function profile(){
-        $user = Auth::user();
-        $setting = $this->WebsiteSetting->find(1);
-        return view('backend.profile',compact('user','setting'));
-    }
+    
     
     public function signOut() {
         Session::flush();

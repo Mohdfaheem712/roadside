@@ -57,6 +57,7 @@
         @include('backend.layouts.ui-setting')
     @show
   @endif
+
   <!--   Core JS Files   -->
   <script src="{{ asset('backend/assets/js/core/popper.min.js') }}"></script>
   <script src="{{ asset('backend/assets/js/core/bootstrap.min.js') }}"></script>
@@ -319,8 +320,11 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
-  <!-- Github buttons -->
-  <script async defer src="https://buttons.github.io/buttons.js') }}"></script>
+  <script>
+    @if(Session::has('success'))
+      $('$successToast').click();
+    @endif
+  </script>
   <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{ asset('backend/assets/js/material-dashboard.min.js?v=3.0.0') }}"></script>
 </body>

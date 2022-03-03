@@ -6,11 +6,24 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\WebsiteSetting;
+use App\Models\UserQueries;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    public function profile(Request $request){
+
+    public function __construct(WebsiteSetting $WebsiteSetting,UserQueries $UserQueries){
+        $this->WebsiteSetting = $WebsiteSetting;
+        $this->UserQueries = $UserQueries;
+    }
+
+    public function profile(){
+        $user = Auth::user();
+        return view('backend.profile',compact('user'));
+    }
+
+    public function updateProfile(Request $request){
 
         $request->validate([
             'name' => 'required',
@@ -24,6 +37,11 @@ class AdminController extends Controller
         return redirect("admin/profile")->withSuccess('Details Updated Successfully');
     }
 
+    public function setting(){
+        $setting = $this->WebsiteSetting->find(1);
+        return view('backend.setting',compact('setting'));
+    }
+
     public function updateSetting(Request $request){
 
         $request->validate([
@@ -32,18 +50,23 @@ class AdminController extends Controller
             'phone' => 'required',
             'address' => 'required',
         ]);
-        if($request->hasFile($request->file)){
-            $name = $request->file('logo')->getClientOriginalName();
- 
-            $path = $request->file('logo')->store('public/images/logo');
-            $request->logo = $path;
-            dd($request->logo);
-        }
-
-        
         $data = request()->except(['_token']);
-        
-        WebsiteSetting::where('id', 1)->update($data);
-        return redirect("admin/profile")->withSuccess('Website Details Updated Successfully');
+        $setting = $this->WebsiteSetting->find(1);
+        if($request->hasFile($request->file)){
+            if (isset($data['logo'])) {
+                if(!empty($setting->logo)){
+                    Storage::delete($setting->logo);
+                }
+                $data['logo'] = request()->file('logo')->store('images/logo');
+            }
+        }
+        $setting->update($data);
+        return redirect("admin/setting")->withSuccess('Website Details Updated Successfully');
     }
+
+    public function queries(){
+        $queries = $this->UserQueries->all();
+        return view('backend.queries',compact('queries'));
+    }
+
 }

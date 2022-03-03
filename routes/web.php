@@ -26,11 +26,14 @@ Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/', [LoginController::class, 'login'])->name('login');
-    Route::get('login', [LoginController::class, 'login'])->name('login');
+    Route::get('login', [LoginController::class, 'login']);
     Route::post('adminlogin', [LoginController::class, 'customLogin'])->name('adminlogin'); 
-    Route::get('dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
-    Route::get('profile', [LoginController::class, 'profile'])->name('profile');  
     Route::get('signout', [LoginController::class, 'signOut'])->name('signout');
-    Route::post('profile', [AdminController::class, 'profile'])->name('updateProfile');
-    Route::post('updatesetting', [AdminController::class, 'updateSetting'])->name('updatesetting');  
+    Route::get('dashboard', [LoginController::class, 'dashboard'])->name('dashboard');
+    Route::get('profile', [AdminController::class, 'profile'])->name('profile');  
+    Route::post('updateProfile', [AdminController::class, 'updateProfile'])->name('updateProfile');
+    Route::get('setting', [AdminController::class, 'setting'])->name('setting');  
+    Route::post('updateSetting', [AdminController::class, 'updateSetting'])->name('updateSetting');
+    Route::get('queries', [AdminController::class, 'queries'])->name('queries');  
+    Route::post('replyQuery', [AdminController::class, 'replyQuery'])->name('replyQuery');    
 });
