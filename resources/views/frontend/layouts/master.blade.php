@@ -49,7 +49,7 @@
                         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse1" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
                         </button>
-                        <a class="navbar-brand mx-auto" href="{{ route('index') }}">Pet <span data-blast="color">Club</span></a>
+                        <a class="navbar-brand mx-auto" href="{{ route('index') }}"><img src="{{ \Illuminate\Support\Facades\Storage::url($setting->logo)}}" alt="profile_image" class="w-100 border-radius-lg shadow-sm"></a>
                         <div class="collapse navbar-collapse" id="navbarCollapse1">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item {{ (request()->is('/')) ? 'active' : '' }}"> <a class="nav-link" href="{{ route('index') }}">Home</a> </li>

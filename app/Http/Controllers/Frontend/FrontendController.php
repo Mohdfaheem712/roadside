@@ -3,12 +3,18 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\WebsiteSetting;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
+    public function __construct(WebsiteSetting $WebsiteSetting){
+        $this->setting = $WebsiteSetting->find(1);
+    }
+
     public function index(){
-        return view('frontend.index');
+        $setting = $this->setting;
+        return view('frontend.index',compact('setting'));
     }
 
     public function services(){

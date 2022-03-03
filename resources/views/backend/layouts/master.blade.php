@@ -50,15 +50,15 @@
     @endif
      <div class="position-fixed top-2 end-1 z-index-2">
         <div class="toast fade hide p-2 bg-white" role="alert" aria-live="assertive" id="successToast" aria-atomic="true">
-          <div class="toast-header border-0">
-            <i class="material-icons text-success me-2">
-        check
-      </i>
+          <div class="toast-header border-0 bg-transparent">
+            <i class="material-icons text-{{ Session::get('type') }} me-2">
+            {{ Session::get('icon') }}
+            </i>
             <span class="me-auto font-weight-bold">{{ Session::get('type') }}</span>
             <small class="text-body">{{ Session::get('time') }}</small>
             <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast" aria-label="Close"></i>
           </div>
-          <hr class="horizontal dark m-0">
+          <hr class="horizontal dark m-0" style="background-color:#0c0d0fd9">
           <div class="toast-body">
           {{ Session::get('message') }}
           </div>

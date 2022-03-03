@@ -10,6 +10,7 @@ use App\Models\UserQueries;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -34,8 +35,16 @@ class AdminController extends Controller
         $data = request()->except(['_token','password']);
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
-        User::where('id', $user_id)->update($data);
-        return redirect("admin/profile")->withSuccess('Details Updated Successfully');
+        if(User::where('id', $user_id)->update($data)){
+            Session::flash('message', $user->name .' details updated successfully.'); 
+            Session::flash('type', 'success');
+            Session::flash('icon', 'check');
+        }else{
+            Session::flash('message', 'Oops! something went wrong.'); 
+            Session::flash('type', 'warning');
+            Session::flash('icon', 'warning');
+        }
+        return redirect("admin/profile");
     }
 
     public function setting(){
@@ -61,11 +70,17 @@ class AdminController extends Controller
                 $data['logo'] = request()->file('logo')->store('images/logo');
             }
         }
-        $setting->update($data);
-
-        Session::flash('message', 'Settings Updated Successfully!'); 
-        Session::flash('type', 'Success');
-        Session::flash('time', now());
+        if($setting->update($data)){
+            Session::flash('message', 'Settings updated successfully.'); 
+            Session::flash('type', 'success');
+            Session::flash('icon', 'check');
+        }
+        else{
+            Session::flash('message', 'Oops! something went wrong.'); 
+            Session::flash('type', 'warning');
+            Session::flash('icon', 'warning');
+        }
+        Session::flash('time',  Carbon::now()->diffForHumans());
         return redirect("admin/setting");
     }
 
