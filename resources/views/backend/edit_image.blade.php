@@ -29,28 +29,20 @@
                 </div>
             </div>
             <div class="col-12 col-xl-8">
-                <div class="card-header pb-0 p-3">
-                    <div class="row">
-                    <div class="col-md-8 d-flex align-items-center">
-                        <h6 class="mb-0">Edit Website Information</h6>
-                    </div>
-                    <div class="col-md-4 text-end">
-                        <a href="javascript:;">
-                        <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Profile"></i>
-                        </a>
-                    </div>
-                    </div>
-                </div>
+                
                 <div class="card-body p-3">
-                    <form role="form" class="text-start" method="post" action="{{ route('admin.updateSetting') }}" enctype="multipart/form-data">
+                    <form role="form" class="text-start" method="post" action="{{ route('admin.updateImage',$image->id) }}" enctype="multipart/form-data">
                         @csrf
                         <div class="input-group input-group-outline my-3 is-filled">
                             <label class="form-label">Title</label>
                             <input type="title" name="title" value="{{ $image->title }}" class="form-control">
                         </div>
                         <div class="input-group input-group-outline my-3 is-filled">
-                            <label class="form-label">Email</label>
-                            <input type="email" name="email" value="{{ $image->status }}" class="form-control">
+                            <label class="form-label">Status</label>
+                            <select name="status" value="{{ $image->status }}" class="form-control">
+                                <option value="1" {{ $image->status == 1 ? 'selected': '' }} >Active</option>
+                                <option value="0" {{ $image->status == 0 ? 'selected': '' }} >Inactive</option>
+                            </select>
                         </div>
                         
                         <div class="input-group input-group-outline my-3 is-filled">

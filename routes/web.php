@@ -37,6 +37,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('queries', [AdminController::class, 'queries'])->name('queries');  
     Route::post('replyQuery', [AdminController::class, 'replyQuery'])->name('replyQuery'); 
     Route::get('gallery', [AdminController::class, 'gallery'])->name('gallery');
-    Route::get('gallery/edit/{id}', [AdminController::class, 'editImage'])->name('editImage');    
-    Route::post('addImage', [AdminController::class, 'addImage'])->name('addImage');    
+    Route::get('gallery/edit/{id}', [AdminController::class, 'editImage'])->name('editImage');
+    Route::post('gallery/updateImage/{id}', [AdminController::class, 'updateImage'])->name('updateImage'); 
+    Route::delete('gallery/deleteImage/{id}', [AdminController::class, 'deleteImage'])->name('deleteImage');               
+      
 });
