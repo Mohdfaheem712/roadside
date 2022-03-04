@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-
+@section('title','Services')
 @section('main-section')
 
 <!-- Servives

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\WebsiteSetting;
+use App\Models\Gallery;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -18,22 +19,32 @@ class FrontendController extends Controller
     }
 
     public function services(){
-        return view('frontend.services');
+        $setting = $this->setting;
+        return view('frontend.services',compact('setting'));
     }
 
     public function about(){
-        return view('frontend.about');
+        $setting = $this->setting;
+        return view('frontend.about',compact('setting'));
     }
 
     public function gallery(){
-        return view('frontend.gallery');
+        $setting = $this->setting;
+        $images = Gallery::all()
+            ->chunk(3, function($images) {
+            return false;
+        });
+
+        return view('frontend.gallery',compact('setting','images'));
     }
 
     public function booknow(){
-        return view('frontend.booknow');
+        $setting = $this->setting;
+        return view('frontend.booknow',compact('setting'));
     }
 
     public function contact(){
-        return view('frontend.contact');
+        $setting = $this->setting;
+        return view('frontend.contact',compact('setting'));
     }
 }

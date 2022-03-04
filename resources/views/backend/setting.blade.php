@@ -115,6 +115,10 @@
                             <input type="text" name="instagram_url" value="{{ $setting->instagram_url }}" class="form-control">
                         </div>
                         <div class="input-group input-group-outline my-3 is-filled">
+                            <label class="form-label">YouTube URL</label>
+                            <input type="text" name="youtube_url" value="{{ $setting->youtube_url }}" class="form-control">
+                        </div>
+                        <div class="input-group input-group-outline my-3 is-filled">
                             <label class="form-label">Logo</label>
                             <input type="file" name="logo" class="form-control file">
                         </div>

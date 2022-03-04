@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-
+@section('title','Book Now')
 @section('main-section')
 <!-- Booking Form
     ================================================== -->

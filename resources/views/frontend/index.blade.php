@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-
+@section('title', $setting->title)
 @section('main-section')
 
     @section('slider-section')

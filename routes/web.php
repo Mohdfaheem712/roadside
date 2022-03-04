@@ -35,5 +35,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('setting', [AdminController::class, 'setting'])->name('setting');  
     Route::post('updateSetting', [AdminController::class, 'updateSetting'])->name('updateSetting');
     Route::get('queries', [AdminController::class, 'queries'])->name('queries');  
-    Route::post('replyQuery', [AdminController::class, 'replyQuery'])->name('replyQuery');    
+    Route::post('replyQuery', [AdminController::class, 'replyQuery'])->name('replyQuery'); 
+    Route::get('gallery', [AdminController::class, 'gallery'])->name('gallery');
+    Route::get('gallery/edit/{id}', [AdminController::class, 'editImage'])->name('editImage');    
+    Route::post('addImage', [AdminController::class, 'addImage'])->name('addImage');    
 });

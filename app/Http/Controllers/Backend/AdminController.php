@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\WebsiteSetting;
 use App\Models\UserQueries;
+use App\Models\Gallery;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -87,6 +88,16 @@ class AdminController extends Controller
     public function queries(){
         $queries = $this->UserQueries->all();
         return view('backend.queries',compact('queries'));
+    }
+    
+    public function gallery(){
+        $images = Gallery::all();
+        return view('backend.gallery',compact('images'));
+    }
+
+    public function editImage($id){
+        $image = Gallery::find($id);
+        return view('backend.edit_image',compact('image'));
     }
 
 }

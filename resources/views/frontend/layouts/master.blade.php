@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Pet Club Animals Category Bootstrap Responsive Template | Home :: W3layouts</title>
+    <title>@yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8" />
     <meta name="keywords" content="Pet Club Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
@@ -14,6 +14,21 @@
             window.scrollTo(0, 1);
         }
     </script>
+    @stack('css')
+    <style>
+        #logo{
+            background-image: url("{{ \Illuminate\Support\Facades\Storage::url($setting->logo)}}");
+            background-position: 0 0;
+            display: inline-block;
+            width: 147px;
+            height: 60px;
+            background-size: 147px 60px;
+            background-repeat: no-repeat;
+            margin-right: 25px;
+            position: relative;
+            z-index: 120;
+        }
+    </style>
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" type="text/css" media="all" />
     <link href="{{ asset('frontend/css/blast.min.css') }}" rel="stylesheet" />
@@ -49,7 +64,7 @@
                         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse1" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
                         </button>
-                        <a class="navbar-brand mx-auto" href="{{ route('index') }}"><img src="{{ \Illuminate\Support\Facades\Storage::url($setting->logo)}}" alt="profile_image" class="w-100 border-radius-lg shadow-sm"></a>
+                        <a class="navbar-brand mx-auto" href="{{ route('index') }}" id="logo"></a>
                         <div class="collapse navbar-collapse" id="navbarCollapse1">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item {{ (request()->is('/')) ? 'active' : '' }}"> <a class="nav-link" href="{{ route('index') }}">Home</a> </li>
@@ -70,23 +85,17 @@
     @yield('main-section')
     
     {{-- footer --}}
-    @section('footer')
-        @include('frontend.layouts.footer')
-    @endsection
-
+    
+    @include('frontend.layouts.footer')
+    
 
     <script src="{{ asset('frontend/js/jquery-2.2.3.min.js') }}"></script>
     <script src="{{ asset('frontend/js/boost.js') }}"></script>
     <script src="{{ asset('frontend/js/blast.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/lightbox-plus-jquery.min.js') }}">
-    </script>
-    <script>
-        $('#blogCarousel').carousel({
-            interval: 5000
-        });
-    </script>
+    <script src="{{ asset('frontend/js/lightbox-plus-jquery.min.js') }}"></script>
     <script src="{{ asset('frontend/js/move-top.js') }}"></script>
     <script src="{{ asset('frontend/js/easing.js') }}"></script>
+    @stack('scripts')
     <script>
         jQuery(document).ready(function($) {
             $(".scroll").click(function(event) {
