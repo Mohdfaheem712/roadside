@@ -11,10 +11,17 @@
 <div class="row">
         <div class="col-12">
           <div class="card my-4">
-            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                <h6 class="text-white text-capitalize ps-3">Gallery</h6>
-                <button>Add </button>
+            <div class="card-header">
+              <div class="row bg-gradient shadow-black border-radius-lg">
+                <div class="col-6 d-flex align-items-center">
+                  <h4 class="text text-capitalize ps-3">Gallery</h4>
+                </div>
+                <div class="col-6 text-end">
+                  <a class="btn bg-gradient-dark mb-0" href="{{ route('admin.addImage') }}">
+                    <i class="material-icons text-sm">add</i>
+                    Add
+                   </a>
+                </div>
               </div>
             </div>
             <div class="card-body px-0 pb-2">
@@ -54,17 +61,15 @@
                       <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold"> {{ \Carbon\Carbon::parse($image->created_at)->diffForHumans() }}</span>
                       </td>
-                      <td class="align-middle text-center">
-                        <a href="{{ route('admin.editImage',$image->id) }} " class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit Image">
-                          Edit
-                        </a>
-                        <form method="post" action="{{ route('admin.deleteImage',$image->id) }}">
-                          @csrf
-                          <input type="hidden" name="_method" value="delete" />
-                          <button type="submit" class="text-secondary font-weight-bold text-xs" >
-                            Delete
-                          </button>
-                        </form>
+                      <td>
+                        <div class="ms-auto text-end">
+                          <a class="btn btn-link text-dark px-3 mb-0" href="{{ route('admin.editImage',$image->id) }}"><i class="material-icons text-sm me-2">edit</i>Edit</a>
+                          <form method="post" action="{{ route('admin.deleteImage',$image->id) }}" style="display:inline-block;">
+                            @csrf
+                            <input type="hidden" name="_method" value="delete" />
+                            <button type="submit" class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">delete</i>Delete</button>
+                          </form>
+                        </div>
                       </td>
                     </tr>
                     @endforeach

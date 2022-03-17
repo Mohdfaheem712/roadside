@@ -15,7 +15,7 @@ class Gallery extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'title',
         'image_url',
         'status',
     ];

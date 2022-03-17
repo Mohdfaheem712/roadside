@@ -17,7 +17,7 @@
     @stack('css')
     <style>
         #logo{
-            background-image: url("{{ \Illuminate\Support\Facades\Storage::url($setting->logo)}}");
+            background-image: url("{{ Config::get('settings.logo') }}");
             background-position: 0 0;
             display: inline-block;
             width: 147px;

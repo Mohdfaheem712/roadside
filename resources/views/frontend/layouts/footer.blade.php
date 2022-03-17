@@ -7,20 +7,20 @@
                 <div class="row mt-4">
                     <div class="col-md-6">
                         <h3 class="text-uppercase mb-3 ">Connect With Social</h3>
-                        <a href="{{ $setting->twitter_url }}"><span class="fa fa-twitter"></span></a>
-                        <a href="{{ $setting->instagram_url }}"><span class="fa fa-instagram"></span></a>
-                        <a href="{{ $setting->facebook_url }}"><span class="fa fa-facebook"></span></a>
-                        <a href="{{ $setting->youtube_url }}"><span class="fa fa-youtube"></span></a>
-                        <a href="{{ $setting->facebook_url }}" class="facebook-footer mr-2"><span class="fa fa-facebook mr-1"></span> Facebook</a>
+                        <a href="{{ Config::get('settings.twitter_url') }}"><span class="fa fa-twitter"></span></a>
+                        <a href="{{ Config::get('settings.instagram_url') }}"><span class="fa fa-instagram"></span></a>
+                        <a href="{{ Config::get('settings.facebook_url') }}"><span class="fa fa-facebook"></span></a>
+                        <a href="{{ Config::get('settings.youtube_url') }}"><span class="fa fa-youtube"></span></a>
+                        <a href="{{ Config::get('settings.facebook_url') }}" class="facebook-footer mr-2"><span class="fa fa-facebook mr-1"></span> Facebook</a>
                         <br>
-                        <a href="{{ $setting->twitter_url }}" class="twitter-footer"><span class="fa fa-twitter mr-1"></span> Twitter</a>
+                        <a href="{{ Config::get('settings.twitter_url') }}" class="twitter-footer"><span class="fa fa-twitter mr-1"></span> Twitter</a>
                     </div>
                     <div class="col-md-6">
                         <h3 class="mb-4">Address</h3>
                         <address class="mb-0">
-                        <p class="mb-2"><i class="fas fa-map-marker-alt"></i> {{ $setting->address }}<br> India</p>
-                        <p><i class="fa fa-phone mr-1"></i>{{ $setting->phone }}</p>
-                        <p><i class="fa fa-envelope-open  mr-1"></i> <a href="mailto:{{ $setting->email }}">{{ $setting->email }}</a></p>
+                        <p class="mb-2"><i class="fas fa-map-marker-alt"></i> {{ Config::get('settings.address') }}<br> India</p>
+                        <p><i class="fa fa-phone mr-1"></i>{{ Config::get('settings.address') }}</p>
+                        <p><i class="fa fa-envelope-open  mr-1"></i> <a href="mailto:{{ Config::get('settings.email') }}">{{ Config::get('settings.email') }}</a></p>
                     </address>
                     </div>
                 </div>
@@ -94,6 +94,6 @@
         </div>
     </div>
     <div class="copyright mt-md-5 mt-4 text-center">
-        <p>© 2022 {{ $setting->title }}. All Rights Reserved</p>
+        <p>© 2022 {{ Config::get('settings.title') }}. All Rights Reserved</p>
     </div>
 </footer>

@@ -147,4 +147,33 @@ class AdminController extends Controller
         return redirect()->route('admin.gallery');
     }
 
+    public function addImage(){
+        return view('backend.add_image');
+    }
+
+    public function postImage(Request $request){
+        $request->validate([
+            'title' => 'required',
+            'status' => 'required',
+        ]);
+        $data = request()->except(['_token']);
+        if($request->hasFile($request->file)){
+            if (isset($data['image'])) {
+                $data['image_url'] = request()->file('image')->store('images/gallery');
+            }
+        }
+        if(Gallery::create($data)){
+            Session::flash('message', 'Image added successfully.'); 
+            Session::flash('type', 'success');
+            Session::flash('icon', 'check');
+        }
+        else{
+            Session::flash('message', 'Oops! something went wrong.'); 
+            Session::flash('type', 'warning');
+            Session::flash('icon', 'warning');
+        }
+        Session::flash('time',  Carbon::now()->diffForHumans());
+        return redirect()->route('admin.gallery');
+    }
+
 }

@@ -39,6 +39,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('gallery', [AdminController::class, 'gallery'])->name('gallery');
     Route::get('gallery/edit/{id}', [AdminController::class, 'editImage'])->name('editImage');
     Route::post('gallery/updateImage/{id}', [AdminController::class, 'updateImage'])->name('updateImage'); 
-    Route::delete('gallery/deleteImage/{id}', [AdminController::class, 'deleteImage'])->name('deleteImage');               
+    Route::delete('gallery/deleteImage/{id}', [AdminController::class, 'deleteImage'])->name('deleteImage');
+    Route::get('gallery/addImage/', [AdminController::class, 'addImage'])->name('addImage');
+    Route::post('gallery/postImage/', [AdminController::class, 'postImage'])->name('postImage');               
       
 });

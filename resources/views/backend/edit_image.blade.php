@@ -50,7 +50,7 @@
                             <input type="file" name="image" class="form-control file">
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Update Website Setting</button>
+                            <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Update Image</button>
                         </div>
                     </form>
                 </div>
