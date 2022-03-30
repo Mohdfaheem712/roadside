@@ -11,14 +11,14 @@ class Install extends Command
      *
      * @var string
      */
-    protected $signature = 'servingsmiles:install';
+    protected $signature = 'roadsideromeos:install';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Installing Serving Smile';
+    protected $description = 'Installing Roadside Romeos';
 
     /**
      * Create a new command instance.
@@ -38,7 +38,7 @@ class Install extends Command
     public function handle()
     {
         // running `php artisan migrate`
-        $this->warn('Step: Migrating Servingsmiles tables into database (will take a while)...');
+        $this->warn('Step: Migrating Roadside Romeos tables into database (will take a while)...');
         $migrate = shell_exec('php artisan migrate');
         $this->info($migrate);
 
@@ -50,6 +50,32 @@ class Install extends Command
         // running `php artisan storage:link`
         $this->warn('Step: Creating Link Storage for images and files...');
         $result = shell_exec('php artisan storage:link');
+        $this->info($result);
+
+        // running `touch config/settings.php`
+        $this->warn('Step: Creating custom config file..');
+        $result = shell_exec('touch config/settings.php');
+        $myfile = fopen("config/settings.php", "w") or die("Unable to open file!");
+            $txt = 
+            "<?php
+            use App\Models\WebsiteSetting;
+            use Illuminate\Support\Facades\Storage;
+            
+            return [
+                'title'         => WebsiteSetting::find(1)->title,
+                'email'         => WebsiteSetting::find(1)->email,
+                'phone'         => WebsiteSetting::find(1)->phone,
+                'logo'          => Storage::url(WebsiteSetting::find(1)->logo),
+                'address'       => WebsiteSetting::find(1)->address,
+                'longitude'     => WebsiteSetting::find(1)->longitude,
+                'latitude'      => WebsiteSetting::find(1)->latitude,
+                'facebook_url'  => WebsiteSetting::find(1)->facebook_url,
+                'instagram_url' => WebsiteSetting::find(1)->instagram_url,
+                'twitter_url'   => WebsiteSetting::find(1)->twitter_url,
+                'youtube_url'   => WebsiteSetting::find(1)->youtube_url,
+            ];";
+            fwrite($myfile, $txt);
+            fclose($myfile);
         $this->info($result);
 
         // running `php artisan route:cache`
@@ -67,6 +93,6 @@ class Install extends Command
         $result = shell_exec('php artisan route:clear');
         $this->info($result);
 
-        $this->comment('Success: Servingsmiles has been configured successfully.');
+        $this->comment('Success: Roadside Romeos has been configured successfully.');
     }
 }
