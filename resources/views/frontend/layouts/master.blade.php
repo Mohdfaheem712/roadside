@@ -17,7 +17,7 @@
     @stack('css')
     <style>
         #logo{
-            background-image: url("{{ Config::get('settings.logo') }}");
+            background-image: url("{{ core()->getConfigData('logo') }}");
             background-position: 0 0;
             display: inline-block;
             width: 147px;

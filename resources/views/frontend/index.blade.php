@@ -1,5 +1,5 @@
 @extends('frontend.layouts.master')
-@section('title', Config::get('settings.title'))
+@section('title', core()->getConfigData('title'))
 @section('main-section')
 
     @section('slider-section')
