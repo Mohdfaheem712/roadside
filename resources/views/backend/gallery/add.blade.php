@@ -5,7 +5,14 @@
     <div class="row">
         <div class="row">
             <div class="col-12 col-xl-12">
-                
+                <div class="row bg-gradient shadow-black border-radius-lg">
+                    <div class="col-6 d-flex align-items-center">
+                    <h4 class="text text-capitalize ps-3">
+                        <i class="material-icons text-sm">add</i>
+                        Add Image
+                    </h4>
+                    </div>
+                </div>
                 <div class="card-body p-3">
                     <form role="form" class="text-start" method="post" action="{{ route('admin.postImage') }}" enctype="multipart/form-data">
                         @csrf

@@ -1,7 +1,6 @@
 <?php
 
 namespace App;
-use App\Models\WebsiteSetting;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;

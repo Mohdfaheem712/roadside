@@ -7,11 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\WebsiteSetting;
 use App\Models\UserQueries;
-use App\Models\Gallery;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-use Carbon\Carbon;
+
 
 class AdminController extends Controller
 {
@@ -37,15 +35,9 @@ class AdminController extends Controller
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
         if(User::where('id', $user_id)->update($data)){
-            Session::flash('message', $user->name .' details updated successfully.'); 
-            Session::flash('type', 'success');
-            Session::flash('icon', 'check');
-        }else{
-            Session::flash('message', 'Oops! something went wrong.'); 
-            Session::flash('type', 'warning');
-            Session::flash('icon', 'warning');
+            return redirect("admin/profile")->with(['success' => $user->name .' details updated successfully.!']);
         }
-        return redirect("admin/profile");
+        return redirect("admin/profile")->with(['error' => 'Oops, Something went wrong!']);
     }
 
     public function setting(){
@@ -72,17 +64,9 @@ class AdminController extends Controller
             }
         }
         if($setting->update($data)){
-            Session::flash('message', 'Settings updated successfully.'); 
-            Session::flash('type', 'success');
-            Session::flash('icon', 'check');
+            return redirect("admin/setting")->with(['success' => 'Settings updated successfully!']);
         }
-        else{
-            Session::flash('message', 'Oops! something went wrong.'); 
-            Session::flash('type', 'warning');
-            Session::flash('icon', 'warning');
-        }
-        Session::flash('time',  Carbon::now()->diffForHumans());
-        return redirect("admin/setting");
+        return redirect("admin/setting")->with(['error' => 'Oops, Something went wrong!']);
     }
 
     public function queries(){
@@ -90,90 +74,4 @@ class AdminController extends Controller
         return view('backend.queries',compact('queries'));
     }
     
-    public function gallery(){
-        $images = Gallery::all();
-        return view('backend.gallery',compact('images'));
-    }
-
-    public function editImage($id){
-        $image = Gallery::find($id);
-        return view('backend.edit_image',compact('image'));
-    }
-
-    public function updateImage(Request $request,$id){
-        $image = Gallery::find($id);
-        $request->validate([
-            'title' => 'required',
-            'status' => 'required',
-        ]);
-        $data = request()->except(['_token']);
-        if($request->hasFile($request->file)){
-            if (isset($data['image'])) {
-                if(!empty($image->image_url)){
-                    Storage::delete($image->image_url);
-                }
-                $data['image_url'] = request()->file('image')->store('images/gallery');
-            }
-        }
-        if($image->update($data)){
-            Session::flash('message', 'Image updated successfully.'); 
-            Session::flash('type', 'success');
-            Session::flash('icon', 'check');
-        }
-        else{
-            Session::flash('message', 'Oops! something went wrong.'); 
-            Session::flash('type', 'warning');
-            Session::flash('icon', 'warning');
-        }
-        Session::flash('time',  Carbon::now()->diffForHumans());
-        return redirect()->route('admin.editImage',$id);
-    }
-
-    public function deleteImage($id){
-        $image = Gallery::find($id);
-        if(!empty($image->image_url)){
-            Storage::delete($image->image_url);
-        }
-        if($image->delete()){
-            Session::flash('message', 'Image deleted successfully.'); 
-            Session::flash('type', 'success');
-            Session::flash('icon', 'check');
-        }
-        else{
-            Session::flash('message', 'Oops! something went wrong.'); 
-            Session::flash('type', 'warning');
-            Session::flash('icon', 'warning');
-        }
-        return redirect()->route('admin.gallery');
-    }
-
-    public function addImage(){
-        return view('backend.add_image');
-    }
-
-    public function postImage(Request $request){
-        $request->validate([
-            'title' => 'required',
-            'status' => 'required',
-        ]);
-        $data = request()->except(['_token']);
-        if($request->hasFile($request->file)){
-            if (isset($data['image'])) {
-                $data['image_url'] = request()->file('image')->store('images/gallery');
-            }
-        }
-        if(Gallery::create($data)){
-            Session::flash('message', 'Image added successfully.'); 
-            Session::flash('type', 'success');
-            Session::flash('icon', 'check');
-        }
-        else{
-            Session::flash('message', 'Oops! something went wrong.'); 
-            Session::flash('type', 'warning');
-            Session::flash('icon', 'warning');
-        }
-        Session::flash('time',  Carbon::now()->diffForHumans());
-        return redirect()->route('admin.gallery');
-    }
-
 }

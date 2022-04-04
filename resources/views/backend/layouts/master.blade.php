@@ -7,7 +7,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('backend/assets/img/apple-icon.png') }}') }}">
   <link rel="icon" type="image/png" href="{{ asset('backend/assets/img/favicon.png') }}') }}">
   <title>
-    Roadside Romeos
+    @yield('title')
   </title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -48,23 +48,42 @@
           @include('backend.layouts.footer')
       @show
     @endif
-     <div class="position-fixed top-2 end-1 z-index-2">
+      
+      @if(Session::get('success'))
+      <div class="position-fixed top-2 end-1 z-index-2">
         <div class="toast fade hide p-2 bg-white" role="alert" aria-live="assertive" id="successToast" aria-atomic="true">
           <div class="toast-header border-0 bg-transparent">
-            <i class="material-icons text-{{ Session::get('type') }} me-2">
-            {{ Session::get('icon') }}
+            <i class="material-icons text-success me-2">
+            check
             </i>
-            <span class="me-auto font-weight-bold">{{ Session::get('type') }}</span>
-            <small class="text-body">{{ Session::get('time') }}</small>
+            <span class="me-auto font-weight-bold">Success</span>
             <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast" aria-label="Close"></i>
           </div>
           <hr class="horizontal dark m-0" style="background-color:#0c0d0fd9">
           <div class="toast-body">
-          {{ Session::get('message') }}
+          {{ Session::get('success') }}
           </div>
         </div>
-    </div>
+      </div>
+      @endif
 
+      @if(Session::get('error'))
+      <div class="position-fixed top-2 end-1 z-index-2">
+        <div class="toast fade hide p-2 bg-white" role="alert" aria-live="assertive" id="errorToast" aria-atomic="true">
+          <div class="toast-header border-0 bg-transparent">
+            <i class="material-icons text-error me-2">
+            warning
+            </i>
+            <span class="me-auto font-weight-bold">Error</span>
+            <i class="fas fa-times text-md ms-3 cursor-pointer" data-bs-dismiss="toast" aria-label="Close"></i>
+          </div>
+          <hr class="horizontal dark m-0" style="background-color:#0c0d0fd9">
+          <div class="toast-body">
+          {{ Session::get('error') }}
+          </div>
+        </div>
+      </div>
+      @endif
   </main>
   
   {{-- ui-setting --}}
@@ -90,9 +109,14 @@
       }
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
-    @if(Session::has('message'))
+    @if(Session::has('success'))
       $('#successToast').removeClass('hide');
       $('#successToast').addClass('show');
+    @endif
+
+    @if(Session::has('error'))
+      $('#errorToast').removeClass('hide');
+      $('#errorToast').addClass('show');
     @endif
   </script>
   

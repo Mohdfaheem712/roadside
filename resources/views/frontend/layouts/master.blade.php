@@ -68,6 +68,7 @@
                         <div class="collapse navbar-collapse" id="navbarCollapse1">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item {{ (request()->is('/')) ? 'active' : '' }}"> <a class="nav-link" href="{{ route('index') }}">Home</a> </li>
+                                <li class="nav-item {{ (request()->is('blogs*')) ? 'active' : '' }}"> <a class="nav-link" href="{{ route('blogs') }}">Blogs</a> </li>
                                 <li class="nav-item {{ (request()->is('services')) ? 'active' : '' }}"> <a class="nav-link" href="{{ route('services') }}">Services</a> </li>
                                 <li class="nav-item {{ (request()->is('about')) ? 'active' : '' }}"> <a class="nav-link" href="{{ route('about') }}">About</a> </li>
                                 <li class="nav-item {{ (request()->is('gallery')) ? 'active' : '' }}"> <a class="nav-link" href="{{ route('gallery') }}">Gallery</a> </li>
