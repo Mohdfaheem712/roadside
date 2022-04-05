@@ -5,6 +5,8 @@ use App\Http\Controllers\Backend\LoginController;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\GalleryController;
 use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\Backend\ClientReviewController;
+use App\Http\Controllers\Backend\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +56,20 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::post('blog/postBlog/', [BlogController::class, 'postBlog'])->name('postBlog');
     Route::get('blog/edit/{id}', [BlogController::class, 'editBlog'])->name('editBlog');
     Route::post('blog/updateBlog/{id}', [BlogController::class, 'updateBlog'])->name('updateBlog'); 
-    Route::delete('blog/deleteBlog/{id}', [BlogController::class, 'deleteBlog'])->name('deleteBlog');                 
+    Route::delete('blog/deleteBlog/{id}', [BlogController::class, 'deleteBlog'])->name('deleteBlog'); 
+    
+    Route::get('client-reviews', [ClientReviewController::class, 'clientReviews'])->name('client-reviews');
+    Route::get('client-reviews/addReview/', [ClientReviewController::class, 'addReview'])->name('addReview');
+    Route::post('client-reviews/postReview/', [ClientReviewController::class, 'postReview'])->name('postReview');
+    Route::get('client-reviews/edit/{id}', [ClientReviewController::class, 'editReview'])->name('editReview');
+    Route::post('client-reviews/updateReview/{id}', [ClientReviewController::class, 'updateReview'])->name('updateReview'); 
+    Route::delete('client-reviews/deleteReview/{id}', [ClientReviewController::class, 'deleteReview'])->name('deleteReview');
+
+    Route::get('services', [ServiceController::class, 'services'])->name('services');
+    Route::get('services/addService/', [ServiceController::class, 'addService'])->name('addService');
+    Route::post('services/postService/', [ServiceController::class, 'postService'])->name('postService');
+    Route::get('services/edit/{id}', [ServiceController::class, 'editService'])->name('editService');
+    Route::post('services/updateService/{id}', [ServiceController::class, 'updateService'])->name('updateService'); 
+    Route::delete('services/deleteService/{id}', [ServiceController::class, 'deleteService'])->name('deleteService');
       
 });

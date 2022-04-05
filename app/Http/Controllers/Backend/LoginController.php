@@ -31,11 +31,12 @@ class LoginController extends Controller
         ]);
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
+            $user = Auth::user();
             return redirect()->intended('admin/dashboard')
-                        ->withSuccess('Signed in');
+            ->with(['success' => 'Welcome '.$user->name.', Your are signed in!']);
         }
   
-        return redirect("login")->withSuccess('Login details are not valid');
+        return redirect("admin/login")->with(['error' => 'Login details are not valid']);
     } 
     
     public function dashboard()
@@ -44,15 +45,13 @@ class LoginController extends Controller
             return view('backend.dashboard');
         }
   
-        return redirect("admin/login")->withSuccess('You are not allowed to access');
+        return redirect("admin/login")->with(['error' => 'Login details are not valid']);
     }
 
-    
-    
     public function signOut() {
         Session::flush();
         Auth::logout();
   
-        return Redirect('admin/login');
+        return Redirect('admin/login')->with(['success' => 'Logged out!']);;
     }
 }

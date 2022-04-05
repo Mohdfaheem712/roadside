@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Blog;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 
 class BlogController extends Controller
@@ -56,7 +55,7 @@ class BlogController extends Controller
                 if(!empty($blog->image_url)){
                     Storage::delete($blog->image_url);
                 }
-                $data['image_url'] = request()->file('image')->store('images/gallery');
+                $data['image_url'] = request()->file('image')->store('images/blog');
             }
         }
         if($blog->update($data)){
@@ -71,7 +70,7 @@ class BlogController extends Controller
             Storage::delete($blog->image_url);
         }
         if($blog->delete()){
-            return redirect()->route('admin.blog')->with(['success' => 'Image added successfully!']);
+            return redirect()->route('admin.blog')->with(['success' => 'Image deleted successfully!']);
         }
         return redirect()->route('admin.blog')->with(['error' => 'Oops! something went wrong!']);
     }

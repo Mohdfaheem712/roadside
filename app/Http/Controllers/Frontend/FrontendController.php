@@ -20,7 +20,7 @@ class FrontendController extends Controller
     }
 
     public function blogs(){
-        $blogs = Blog::all();
+        $blogs = Blog::all()->where('status',1);
         return view('frontend.blogs',compact('blogs'));
     }
 
@@ -37,6 +37,7 @@ class FrontendController extends Controller
 
     public function gallery(){
         $images = Gallery::all()
+            ->where('status',1)
             ->chunk(3, function($images) {
             return false;
         });
