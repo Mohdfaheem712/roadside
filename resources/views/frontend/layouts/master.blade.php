@@ -72,7 +72,6 @@
                                 <li class="nav-item {{ (request()->is('services')) ? 'active' : '' }}"> <a class="nav-link" href="{{ route('services') }}">Services</a> </li>
                                 <li class="nav-item {{ (request()->is('about')) ? 'active' : '' }}"> <a class="nav-link" href="{{ route('about') }}">About</a> </li>
                                 <li class="nav-item {{ (request()->is('gallery')) ? 'active' : '' }}"> <a class="nav-link" href="{{ route('gallery') }}">Gallery</a> </li>
-                                <li class="nav-item {{ (request()->is('booknow')) ? 'active' : '' }}"> <a class="nav-link" href="{{ route('booknow') }}">Book Now</a> </li>
                                 <li class="nav-item {{ (request()->is('contact')) ? 'active' : '' }}"> <a class="nav-link" href="{{ route('contact') }}">Contact</a> </li>
                             </ul>
                         </div>

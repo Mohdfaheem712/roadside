@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Gallery;
 use App\Models\Blog;
+use App\Models\Services;
+use App\Models\ClientReviews;
 use Illuminate\Http\Request;
 use App\Models\UserQueries;
 
@@ -12,7 +14,13 @@ class FrontendController extends Controller
 {
 
     public function index(){
-        return view('frontend.index');
+        $reviews = ClientReviews::all()
+            ->where('status',1)
+            ->chunk(4, function($reviews) {
+            return false;
+        });
+        $services = Services::all();
+        return view('frontend.index',compact('reviews','services'));
     }
 
     public function services(){

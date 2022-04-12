@@ -30,7 +30,7 @@
                   <thead>
                     <tr>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Sr. No</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Description</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Icon</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
@@ -45,7 +45,7 @@
                         <span class="text-secondary text-xs font-weight-bold">{{ $service->id }}</span>
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold">{{ $service->title }}</span>
+                        <span class="text-secondary text-xs font-weight-bold">{{ $service->name }}</span>
                       </td>
                       <td class="align-middle text-center">
                         <span class="text-secondary text-xs font-weight-bold">{{ $service->description }}</span>
@@ -63,7 +63,7 @@
                         @endif
                       </td>
                       <td class="align-middle text-center">
-                        <span class="text-secondary text-xs font-weight-bold"> {{ \Carbon\Carbon::parse($blog->created_at)->diffForHumans() }}</span>
+                        <span class="text-secondary text-xs font-weight-bold"> {{ \Carbon\Carbon::parse($service->created_at)->diffForHumans() }}</span>
                       </td>
                       <td>
                         <div class="ms-auto text-end">

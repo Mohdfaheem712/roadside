@@ -15,7 +15,7 @@ class Services extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'title',
+        'name',
         'description',
         'status',
         'icon_url',

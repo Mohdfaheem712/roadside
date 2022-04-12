@@ -26,7 +26,6 @@ Route::get('/blogs', [FrontendController::class, 'blogs'])->name('blogs');
 Route::get('/blogs/{title}', [FrontendController::class, 'blog'])->name('blog');
 Route::get('/about', [FrontendController::class, 'about'])->name('about');
 Route::get('/gallery', [FrontendController::class, 'gallery'])->name('gallery');
-Route::get('/booknow', [FrontendController::class, 'booknow'])->name('booknow');
 Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 Route::post('/contact', [FrontendController::class, 'postContact'])->name('postContact');
 

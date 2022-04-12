@@ -19,8 +19,9 @@ class ServiceController extends Controller
     }
 
     public function postService(Request $request){
+        
         $request->validate([
-            'title' => 'required',
+            'name' => 'required',
             'status' => 'required',
             'description' => 'required',
         ]);

@@ -34,8 +34,8 @@
                     <form role="form" class="text-start" method="post" action="{{ route('admin.updateBlog',$blog->id) }}" enctype="multipart/form-data">
                         @csrf
                         <div class="input-group input-group-outline my-3 is-filled">
-                            <label class="form-label">Title</label>
-                            <input type="text" name="title" value="{{ $blog->title }}" class="form-control">
+                            <label class="form-label">Name</label>
+                            <input type="text" name="name" value="{{ $blog->title }}" class="form-control">
                         </div>
 
                         <div class="input-group input-group-outline my-3 is-filled">

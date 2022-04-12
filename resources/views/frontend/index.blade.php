@@ -26,54 +26,19 @@
     <section class="grids-bottom-w3ls bg-light py-md-5 py-3">
         <div class="container">
             <div class="row">
+                @foreach($services as $service)
                 <div class="col-lg-3 about-in text-left">
                     <div class="card">
                         <div class="card-body">
                             <i class="fa fa-home" aria-hidden="true" data-blast="color"></i>
-                            <h5 class="card-title">Pet Room</h5>
+                            <h5 class="card-title">{{ $service->name }}</h5>
                             <div class="line" data-blast="bgColor"></div>
-                            <p class="card-text mt-3">Lorem ipsum dolor sit amet consectetur elit,dolore magna aliqua uta.
+                            <p class="card-text mt-3">{{ $service->description }}
                             </p>
                         </div>
                     </div>
-
                 </div>
-                <div class="col-lg-3 about-in text-left">
-                    <div class="card">
-                        <div class="card-body">
-                            <i class="fa fa-cubes" aria-hidden="true" data-blast="color"></i>
-                            <h5 class="card-title"> Best Food</h5>
-                            <div class="line" data-blast="bgColor"></div>
-                            <p class="card-text mt-3">Lorem ipsum dolor sit amet consectetur elit,dolore magna aliqua uta.
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-3 about-in text-left">
-                    <div class="card">
-                        <div class="card-body">
-                            <i class="fa fa-heart-o" aria-hidden="true" data-blast="color"></i>
-                            <h5 class="card-title"> Veterinarian Help</h5>
-                            <div class="line" data-blast="bgColor"></div>
-                            <p class="card-text mt-3">Lorem ipsum dolor sit amet consectetur elit,dolore magna aliqua uta.
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-3 about-in text-left">
-                    <div class="card">
-                        <div class="card-body">
-                            <i class="fa fa-calendar" aria-hidden="true" data-blast="color"></i>
-                            <h5 class="card-title">Easy Booking</h5>
-                            <div class="line" data-blast="bgColor"></div>
-                            <p class="card-text mt-3">Lorem ipsum dolor sit amet consectetur elit,dolore magna aliqua uta.
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -88,69 +53,28 @@
                         <div id="blogCarousel" class="carousel slide" data-ride="carousel">
 
                             <ol class="carousel-indicators">
-                                <li data-target="#blogCarousel" data-slide-to="0" class="active"></li>
-                                <li data-target="#blogCarousel" data-slide-to="1"></li>
+                                @foreach($reviews as $key => $reviews_array)
+                                <li data-target="#blogCarousel" data-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}"></li>
+                                @endforeach
                             </ol>
 
                             <div class="carousel-inner">
 
-                                <div class="carousel-item active">
+                            @foreach($reviews as $key => $reviews_array)
+                                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
                                     <div class="row">
+                                        @foreach($reviews_array as $review)
                                         <div class="col-md-3 reviews-box">
                                             <a href="#">
-                                            <img src="{{ asset('images/4.jpg') }}" alt="Image" style="max-width:100%;">
-                                        </a>
-                                            <p class="my-4 text-left"><i class="fa fa-quote-right" aria-hidden="true"></i> Lorem ipsum dolor sit amet Neque porro quisquam est qui doloreman unknown printer took a galley of type..</p>
+                                            <img src="{{ Storage::url($review->image_url) }}" alt="Image" style="max-width:100%;">
+                                            </a>
+                                            <p class="my-4 text-left"><i class="fa fa-quote-right" aria-hidden="true"></i>{{ $review->message }}</p>
                                         </div>
-                                        <div class="col-md-3 reviews-box">
-                                            <a href="#">
-                                             <img src="{{ asset('images/5.jpg') }}" alt="Image" style="max-width:100%;">
-                                        </a>
-                                            <p class="my-4 text-left"><i class="fa fa-quote-right" aria-hidden="true"></i> Lorem ipsum dolor sit amet Neque porro quisquam est qui doloreman unknown printer took a galley of type..</p>
-                                        </div>
-                                        <div class="col-md-3 reviews-box">
-                                            <a href="#">
-                                             <img src="{{ asset('images/7.jpg') }}" alt="Image" style="max-width:100%;">
-                                        </a>
-                                            <p class="my-4 text-left"><i class="fa fa-quote-right" aria-hidden="true"></i> Lorem ipsum dolor sit amet Neque porro quisquam est qui doloreman unknown printer took a galley of type..</p>
-                                        </div>
-                                        <div class="col-md-3 reviews-box">
-                                            <a href="#">
-                                           <img src="{{ asset('images/8.jpg') }}" alt="Image" style="max-width:100%;">
-                                        </a>
-                                            <p class="my-4 text-left"><i class="fa fa-quote-right" aria-hidden="true"></i> Lorem ipsum dolor sit amet Neque porro quisquam est qui doloreman unknown printer took a galley of type..</p>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
+                            @endforeach
 
-                                <div class="carousel-item">
-                                    <div class="row">
-                                        <div class="col-md-3 reviews-box">
-                                            <a href="#">
-                                             <img src="{{ asset('images/5.jpg') }}" alt="Image" style="max-width:100%;">
-                                        </a>
-                                            <p class="my-4 text-left"><i class="fa fa-quote-right" aria-hidden="true"></i> Lorem ipsum dolor sit amet Neque porro quisquam est qui doloreman unknown printer took a galley of type..</p>
-                                        </div>
-                                        <div class="col-md-3 reviews-box">
-                                            <a href="#">
-                                             <img src="{{ asset('images/7.jpg') }}" alt="Image" style="max-width:100%;">
-                                        </a>
-                                            <p class="my-4 text-left"><i class="fa fa-quote-right" aria-hidden="true"></i> Lorem ipsum dolor sit amet Neque porro quisquam est qui doloreman unknown printer took a galley of type..</p>
-                                        </div>
-                                        <div class="col-md-3 reviews-box">
-                                            <a href="#">
-                                           <img src="{{ asset('images/8.jpg') }}" alt="Image" style="max-width:100%;">
-                                        </a>
-                                            <p class="my-4 text-left"><i class="fa fa-quote-right" aria-hidden="true"></i> Lorem ipsum dolor sit amet Neque porro quisquam est qui doloreman unknown printer took a galley of type..</p>
-                                        </div>
-                                        <div class="col-md-3 reviews-box">
-                                            <a href="#">
-                                            <img src="{{ asset('images/4.jpg') }}" alt="Image" style="max-width:100%;">
-                                        </a>
-                                            <p class="my-4 text-left"><i class="fa fa-quote-right" aria-hidden="true"></i> Lorem ipsum dolor sit amet Neque porro quisquam est qui doloreman unknown printer took a galley of type..</p>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
